@@ -17,6 +17,9 @@ import ProductDetails from './Components/ProductDetails/ProductDetails';
 import CartContextProvider from './Components/Context/cartContext';
 import { Toaster } from 'react-hot-toast';
 import Checkout from './Components/Checkout/Checkout';
+import Subcategorys from './Components/Subcategorys/Subcategorys';
+import Wishlist from './Components/Wishlist/Wishlist';
+import WishlistContextProvider from './Components/Context/wishlistContext';
 
 
 
@@ -29,8 +32,10 @@ let routers = createHashRouter([
       { path: 'Brands', element: <ProtectedRoute><Brands /></ProtectedRoute> },
       { path: 'Categories', element: <ProtectedRoute><Categories /> </ProtectedRoute> },
       { path: 'Products', element: <ProtectedRoute><Products /></ProtectedRoute> },
+      { path: 'Wishlist', element: <ProtectedRoute><Wishlist /></ProtectedRoute> },
       { path: 'Checkout/:id', element: <ProtectedRoute><Checkout /></ProtectedRoute> },
       { path: 'Productdetails/:id', element: <ProtectedRoute><ProductDetails /></ProtectedRoute> },
+      { path: 'Subcategorys/:id', element: <ProtectedRoute><Subcategorys /></ProtectedRoute> },
       { path: 'Register', element: <Register /> },
       { path: 'Login', element: <Login /> },
       { path: '*', element: <Notfound /> },
@@ -44,13 +49,15 @@ let routers = createHashRouter([
 function App() {
 
   return <UserContextProvider>
-          <CartContextProvider>
-            <CounterContextProvider>
-              <RouterProvider router={routers}></RouterProvider>
-              <Toaster position="top-center" />
-            </CounterContextProvider>
-          </CartContextProvider>
-        </UserContextProvider>
+    <WishlistContextProvider>
+      <CartContextProvider>
+        <CounterContextProvider>
+          <RouterProvider router={routers}></RouterProvider>
+          <Toaster position="top-center" />
+        </CounterContextProvider>
+      </CartContextProvider>
+      </WishlistContextProvider >
+  </UserContextProvider>
 
 }
 

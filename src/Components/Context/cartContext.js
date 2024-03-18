@@ -24,6 +24,20 @@ export default function CartContextProvider(props) {
       .catch((error) => error);
   }
 
+    // add products to Wishlist function 
+    async function addToWishlist(id) {
+      return axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,
+        {
+          productId: id
+        },
+        {
+          headers: headers
+        })
+        .then((response) => response)
+        .catch((error) => error);
+    }
+
+
   // get info from logged cart 
   async function getLoggedUserCart() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
@@ -93,7 +107,7 @@ export default function CartContextProvider(props) {
   }
 
 
-  return <CartContext.Provider value={{ addToCart, getLoggedUserCart, removeItem, updateQuantity, clearCart, numOfCartItem, setNumOfCartItem ,checkoutPayment}}>
+  return <CartContext.Provider value={{ addToCart, addToWishlist, getLoggedUserCart, removeItem, updateQuantity, clearCart, numOfCartItem, setNumOfCartItem ,checkoutPayment}}>
     {props.children}
   </CartContext.Provider>
 }

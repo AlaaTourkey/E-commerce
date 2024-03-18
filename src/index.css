@@ -1,25 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
-:root
-{
-    --main-color:#0aad0a;
-    --light-color:#f0f3f2;
-    --shadow: rgba(145,158,171,.2) 0px 2px 4px -1px,rgba(145,158,171,.14) 0px 4px 5px 0px,rgba(145,158,171,.12) 0px 1px 10px 0px;
-    --font-family:'Encode Sans Expanded', sans-serif;
-    --rating-color:#ffc908;
+
+:root {
+    --main-color: #0aad0a;
+    --light-color: #f0f3f2;
+    /* --shadow: rgba(145, 158, 171, .2) 0px 3px 5px -1px, rgba(145, 158, 171, .14) 0px 5px 6px 0px, rgba(145, 158, 171, .12) 0px 2px 11px 0px; */
+    --shadow: -2px 4px 6px 1px #888888;
+    --font-family: 'Encode Sans Expanded', sans-serif;
+    --rating-color: #ffc908;
 }
 
-body{
+body {
     font-family: var(--font-family) !important;
 }
-.rating-color
-{
+
+.rating-color {
     color: var(--rating-color);
 }
-.cursor-pointer
-{
+
+.cursor-pointer {
     cursor: pointer;
 }
-a , a:hover{
+
+a,
+a:hover {
     color: black !important;
     text-decoration: none !important;
 }
@@ -27,42 +30,45 @@ a , a:hover{
 .product:hover {
     box-shadow: var(--shadow);
     border: solid 1px var(--main-color);
-    
+
 }
 
-.product .btn 
-{
-    transition: transform 1s , opacity 1s;
+.product .btn {
+    transition: transform 1s, opacity 1s;
     transform: translateY(100%);
     opacity: 0;
-    -webkit-transition: transform 1s , opacity 1s;
-    -moz-transition: transform 1s , opacity 1s;
-    -ms-transition: transform 1s , opacity 1s;
-    -o-transition: transform 1s , opacity 1s;
+    -webkit-transition: transform 1s, opacity 1s;
+    -moz-transition: transform 1s, opacity 1s;
+    -ms-transition: transform 1s, opacity 1s;
+    -o-transition: transform 1s, opacity 1s;
 }
-.product:hover .btn 
-{
+
+.product:hover .btn {
     opacity: 1;
     transform: translateY(0%);
 
 }
-.font-sm
-{
-    font-size: 14px;
+
+.font-sm {
+    font-size: 14px !important;
 }
-.text-main
-{
+.font-10{
+    font-size: 8px !important;
+}
+
+.text-main {
     color: var(--main-color);
 }
-.bg-main
-{
+
+.bg-main {
     background-color: var(--main-color) !important;
 }
-.bg-main-light 
-{
+
+.bg-main-light {
     background-color: var(--light-color) !important;
 }
-.network{
+
+.network {
     padding: 10px;
     background: #ef0707;
     color: white;
@@ -71,6 +77,24 @@ a , a:hover{
     bottom: 10%;
     left: 20%;
 }
-.main-border{
-    border: 1px solid var(--main-color) !important ;
+
+.main-border {
+    border: 1px solid var(--main-color) !important;
 }
+
+.nav-link.active {
+    background-color: var(--main-color);
+    border-radius: 10px;
+    color: #f0f3f2 !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.logdiv{
+    background-color: #f0f3f2;
+}
+
+/* .fa-heart:hover i {
+    background-color: #ef0707;
+} */

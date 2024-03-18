@@ -60,17 +60,18 @@ function Cart() {
 
   // Function to clear all data from the cart
   async function clearCartData() {
-    let { data } = await clearCart()
-    if (data.message == 'success') {
-      setTotalCartPrice(0);
-      setCartData([])
-      setNumOfCartItem(0)
-      console.log(data);
+    try {
+      let { data } = await clearCart();
+      if (data.message === 'success') {
+        setTotalCartPrice(0);
+        setCartData(null);
+        setNumOfCartItem(0);
+      }
+    } catch (error) {
+      console.error('Error clearing cart:', error);
+      toast.error('Error clearing cart');
     }
-
   }
-
-console.log(cartData);
   return (
     <>
       {isLoading ? (
@@ -125,9 +126,10 @@ console.log(cartData);
           ) : (
             ' '
           )}
-                  <Link to={"/Checkout/" + cartData._id}>
+          {cartData?<Link to={"/Checkout/" + cartData._id}>
                     <span className='btn btn-success my-2'>checkOut</span>
-                  </Link>
+                  </Link>: " " }
+                  
         </>
       )}
 
