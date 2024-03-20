@@ -3,7 +3,7 @@ import Style from './Login.module.css'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Bars } from 'react-loader-spinner'
 import { UserContext } from '../Context/userContext'
 import logimage from '../../Assets/images/package-basket.png'
@@ -74,9 +74,11 @@ function Login() {
                 <label htmlFor="password">Password: </label>
                 <input value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} type='password' name='password' id='password' className='form-control w-100 my-3' />
                 {formik.errors.password && formik.touched.password ? <div className="alert alert-danger">{formik.errors.password}</div> : " "}
+                <div className="">
+                  <Link to={'/forgetpassword'} > <a href="" className='text-danger '>Forget password</a></Link>
 
-
-                <button disabled={!(formik.isValid && formik.dirty)} type='submit' className='btn bg-main text-white my-2' >{isLoading ? <Bars height="25" width="40" color="#fff" ariaLabel="bars-loading" wrapperStyle={{}} wrapperClass="" visible={true} /> : "Login"}</button>
+                </div>
+                <button disabled={!(formik.isValid && formik.dirty)} type='submit' className='btn bg-main text-white my-3' >{isLoading ? <Bars height="25" width="40" color="#fff" ariaLabel="bars-loading" wrapperStyle={{}} wrapperClass="" visible={true} /> : "Login"}</button>
               </form>
             </div>
             <div className="col-12 col-md-6 ">

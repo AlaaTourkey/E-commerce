@@ -49,11 +49,11 @@ function Navbar() {
               </> : ""}
             </ul>
 
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center flex-row ">
 
               {userToken !== null ? <>
                 <li className="nav-item position-relative mx-2">
-                  <Link className="nav-link " to="Wishlist"><i className="fa-regular fa-heart fs-4"></i></Link>
+                  <Link className="nav-link   " to="Wishlist"><i className="fa-regular fa-heart fs-4"></i></Link>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
                     {numOfWishlistItem}
                       <span className="visually-hidden">unread messages</span>
@@ -61,7 +61,7 @@ function Navbar() {
                 </li>
                 
                 <li className="nav-item position-relative mx-2">
-                  <NavLink className="nav-link " to="Cart"><i className="fas fa-cart-plus  fs-5 mx-2 "></i></NavLink>
+                  <NavLink className=" nav-link " to="Cart"><i className="fas fa-cart-plus  fs-5 mx-2 "></i></NavLink>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
                     {numOfCartItem}
                       <span className="visually-hidden">unread messages</span>

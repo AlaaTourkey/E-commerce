@@ -80,13 +80,13 @@ function Cart() {
             </div>
             {wishData?.map((product) => (
               <div key={product._id} className="row my-2 py-2 border-2 border-bottom">
-                <div className="col-3 col-md-1">
+                <div className="col-4  col-md-2">
                   <img src={product.imageCover} alt="" className="w-100" />
                 </div>
-                <div className="col-9 col-md-11">
+                <div className="col-8 col-md-10">
                   <div className="d-flex justify-content-between">
                     <div>
-                      <h3 className="h5">{product.title}</h3>
+                      <h4 className="h5">{product.title.split(' ').slice(0,3).join(' ')}</h4>
                       <span><i className="fa fa-star rating-color" ></i> {product.ratingsAverage}</span>
                       <h6 className="text-main">price: {product.price}</h6>
                     </div>

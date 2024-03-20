@@ -78,19 +78,6 @@ export const WishlistContextProvider = (props) => {
       .catch((error) => error);
   }
 
-  // to update number of Wishlist items 
-  // useEffect(() => {
-  //   const fetchInitialWishlist = async () => {
-  //     try {
-  //       const response = await getLoggedUserWishlist();
-  //       setNumOfWishlistItem(response.data.count);
-  //     } catch (error) {
-  //       console.error('Error fetching initial Wishlist data:', error);
-  //     }
-  //   };
-
-  //   fetchInitialWishlist();
-  // }, []);
 
   useEffect(() => {
     const fetchInitialWishlist = async () => {

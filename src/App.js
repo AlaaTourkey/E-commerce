@@ -20,6 +20,9 @@ import Checkout from './Components/Checkout/Checkout';
 import Subcategorys from './Components/Subcategorys/Subcategorys';
 import Wishlist from './Components/Wishlist/Wishlist';
 import WishlistContextProvider from './Components/Context/wishlistContext';
+import ForgetPassword from './Components/Forgetpassword/Forgetpassword';
+import ResetPassword from './Components/Resetpassword/Resetpassword';
+import UpdatePassword from './Components/Updatepassword/Updatepassword';
 
 
 
@@ -36,6 +39,9 @@ let routers = createHashRouter([
       { path: 'Checkout/:id', element: <ProtectedRoute><Checkout /></ProtectedRoute> },
       { path: 'Productdetails/:id', element: <ProtectedRoute><ProductDetails /></ProtectedRoute> },
       { path: 'Subcategorys/:id', element: <ProtectedRoute><Subcategorys /></ProtectedRoute> },
+      { path: 'forgetpassword', element: <ForgetPassword /> },
+      { path: 'ResetPassword', element: <ResetPassword /> },
+      { path: 'UpdatePassword', element: <UpdatePassword /> },
       { path: 'Register', element: <Register /> },
       { path: 'Login', element: <Login /> },
       { path: '*', element: <Notfound /> },

@@ -80,43 +80,43 @@ function Cart() {
         </div>
       ) : (
         <>
-          {cartData? (
-            <div className="m-5 bg-main-light p-4">
+          {cartData ? (
+            <div className="m-5 bg-main-light p-4 ">
               <div className=" d-flex justify-content-between">
                 <div className="">
                   <h3 className="fw-bolder">Shop Cart: {numOfCartItem}</h3>
                   <h5 className="fw-bolder text-main">Total Cart Price: {totalCartPrice} EGP</h5>
                 </div>
                 <div className="">
-                  <button onClick={clearCartData} className="btn btn-danger">
+                  <button onClick={clearCartData} className="btn  btn-danger">
                     Clear Cart
                   </button>
                 </div>
               </div>
               {cartData?.products.map((product) => (
                 <div key={product.product.id} className="row my-2 py-2 border-2 border-bottom">
-                  <div className="col-3 col-md-1">
+                  <div className="col-4  col-md-2">
                     <img src={product.product.imageCover} alt="" className="w-100" />
                   </div>
-                  <div className="col-9 col-md-11">
+                  <div className="col-8 col-md-10">
                     <div className="d-flex justify-content-between">
                       <div>
-                        <h3 className="h5">{product.product.title.split(' ').slice(0, 3).join(' ')}</h3>
+                        <h3 className="h6">{product.product.title.split(' ').slice(0, 3).join(' ')}</h3>
                         <span><i className="fa fa-star rating-color" ></i> {product.product.ratingsAverage}</span>
                         <h6 className="text-main">price: {product.price}</h6>
                       </div>
-                      <div>
-                        <button onClick={() => updateProductQuantity(product.product._id, product.count + 1)} className="btn main-border">
+                      <div className='d-flex align-items-center'>
+                        <button onClick={() => updateProductQuantity(product.product._id, product.count + 1)} className=" rounded-1 main-border">
                           +
                         </button>
-                        <span className="m-2">{product.count}</span>
-                        <button onClick={() => updateProductQuantity(product.product._id, product.count - 1)} className="btn main-border">
+                        <span className="m-1 fs-6">{product.count}</span>
+                        <button onClick={() => updateProductQuantity(product.product._id, product.count - 1)} className="rounded-1 main-border">
                           -
                         </button>
                       </div>
                     </div>
                     <button onClick={() => removeItemFromCart(product.product._id)} className="btn text-danger">
-                      <i className="fas fa-trash-can"></i> Remove
+                      <i className="fas fa-trash-can "></i> Remove
                     </button>
 
                   </div>
@@ -126,10 +126,10 @@ function Cart() {
           ) : (
             ' '
           )}
-          {cartData?<Link to={"/Checkout/" + cartData._id}>
-                    <span className='btn btn-success my-2'>checkOut</span>
-                  </Link>: " " }
-                  
+          {cartData ? <Link to={"/Checkout/" + cartData._id}>
+            <span className='btn btn-success my-2 mx-5'>Buy Now</span>
+          </Link> : " "}
+
         </>
       )}
 
