@@ -6,9 +6,24 @@ import { Bars } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../Context/cartContext';
 import toast from 'react-hot-toast';
+import Slider from 'react-slick';
 import { WishlistContext } from '../Context/wishlistContext';
 
-function FeaturedProducts() {
+function FeaturedProducts({searchQuery}) {
+  
+    // for slider of products info
+    var settings = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      speed: 1000,
+      autoplaySpeed: 3000,
+      cssEase: "linear",
+      arrows: false,
+    };
+  
 
   const { addToWishlist, setNumOfWishlistItem } = useContext(WishlistContext);
   const { addToCart, setNumOfCartItem } = useContext(CartContext);
@@ -46,6 +61,10 @@ function FeaturedProducts() {
 
   const { isLoading, data } = useQuery('featuredProducts', getFeaturedProducts);
 
+  const filteredProducts = data?.data.data.filter(product =>
+    product.title?.toLowerCase().includes(searchQuery?.toLowerCase())
+  );
+  console.log(data?.data.data);
   return (
     <>
       {isLoading ? (
@@ -55,12 +74,18 @@ function FeaturedProducts() {
       ) : (
         <div className="container">
           <div className="row">
-            {data?.data.data.map((product) => (
-              <div key={product.id} className="col-6 col-md-3">
-                <div className="product p-3">
+            {filteredProducts?.map((product) => (
+              <div key={product.id} className="col-6 col-lg-3">
+                <div className="product p-2">
                   <Link to={`/Productdetails/${product.id}`}>
                     <div className="cursor-pointer">
-                      <img src={product.imageCover} className="w-100" alt={product.title} />
+                      <Slider {...settings} className='mb-4'>
+
+                        {product.images?.map((img) => {
+                          return <img  className='w-100' src={img} alt={data?.data.data.title} />
+                        })}
+
+                      </Slider>
                       <span className="text-main font-sm fw-bolder">{product.category.name}</span>
                       <h3 className="h5">{product.title.split(" ").slice(0, 2).join(" ")}</h3>
                       <div className="d-flex justify-content-between mt-3">
@@ -70,7 +95,7 @@ function FeaturedProducts() {
                     </div>
                   </Link>
                   <div className="d-flex align-items-center justify-content-between w-100 ">
-                    <button onClick={() => addProductToCart(product.id)} className="btn bg-main text-white btn-sm font-10 fw-bold  mt-2">
+                    <button onClick={() => addProductToCart(product.id)} className="btn bg-main text-white btn-sm fw-bold  mt-2">
                       Add to Cart
                     </button>
                     <button onClick={() => addProductToWishlist(product.id)} className="btn mt-2">

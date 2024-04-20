@@ -24,7 +24,7 @@ function Navbar() {
     <>
       <nav className="fixed-top navbar navbar-expand-lg navbar-light bg-light py-3 ">
         <div className="container-fluid">
-          <span className='navbar-brand' >
+          <span className='navbar-brand rotate-vert-center' >
             <img src={logo} alt="fresh market logo" srcSet="" />
           </span>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@ function Navbar() {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center flex-row ">
 
               {userToken !== null ? <>
-                <li className="nav-item position-relative mx-2">
+                <li className="nav-item position-relative mx-2 vibrate-1">
                   <Link className="nav-link   " to="Wishlist"><i className="fa-regular fa-heart fs-4"></i></Link>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
                     {numOfWishlistItem}
@@ -60,7 +60,7 @@ function Navbar() {
                     </span>
                 </li>
                 
-                <li className="nav-item position-relative mx-2">
+                <li className="nav-item position-relative mx-2 vibrate-1">
                   <NavLink className=" nav-link " to="Cart"><i className="fas fa-cart-plus  fs-5 mx-2 "></i></NavLink>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
                     {numOfCartItem}
@@ -78,13 +78,13 @@ function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                  <span onClick={logout} className="nav-link cursor-pointer" to="Login">Logout</span>
+                  <span onClick={logout} className="nav-link cursor-pointer" to="/Login">Logout</span>
                 </li></> :
                 <><li className="nav-item">
-                  <NavLink className="nav-link active" aria-current="page" to="Login">login</NavLink>
+                  <NavLink className="nav-link" aria-current="page" to="/Login">login</NavLink>
                 </li>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="Register">Register</NavLink>
+                    <NavLink className="nav-link" to="/Register">Register</NavLink>
                   </li></>}
 
             </ul>

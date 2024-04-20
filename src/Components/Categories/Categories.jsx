@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import CategorySlider from '../CategorySlider/CategorySlider';
+import { Helmet } from 'react-helmet';
 
 function Categories() {
 
@@ -18,6 +19,12 @@ function Categories() {
 
   return (
     <>
+    
+    <Helmet>
+        <meta charSet="utf-8" />
+        <title>Fresh Market - Categories</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="container my-5 w-75">
         <CategorySlider/>
         <div className="row g-3">

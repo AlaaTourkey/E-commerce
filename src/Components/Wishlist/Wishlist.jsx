@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Bars } from 'react-loader-spinner';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { date } from 'yup';
 import { WishlistContext } from '../Context/wishlistContext';
 import { CartContext } from '../Context/cartContext';
+import { Helmet } from 'react-helmet';
+
 
 function Cart() {
   let { getLoggedUserWishlist, removeItem, setNumOfWishlistItem, numOfWishlistItem } = useContext(WishlistContext)
@@ -63,6 +64,13 @@ function Cart() {
   return (
 
     <>
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Fresh Market - Wishlist</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <h2>Wishlist</h2>
 
       {isLoading ? (
@@ -86,7 +94,7 @@ function Cart() {
                 <div className="col-8 col-md-10">
                   <div className="d-flex justify-content-between">
                     <div>
-                      <h4 className="h5">{product.title.split(' ').slice(0,3).join(' ')}</h4>
+                      <h4 className="h5">{product.title.split(' ').slice(0, 3).join(' ')}</h4>
                       <span><i className="fa fa-star rating-color" ></i> {product.ratingsAverage}</span>
                       <h6 className="text-main">price: {product.price}</h6>
                     </div>

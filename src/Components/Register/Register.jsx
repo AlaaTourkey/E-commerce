@@ -14,7 +14,7 @@ function Register() {
   
   async function submitRegister(values) {
     setIsLoading(true)
-    let {data} = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values)
+    let data = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values)
     .catch((err)=>{
       setIsLoading(false)
       setError(err.response.data.message)
@@ -23,7 +23,6 @@ function Register() {
       setIsLoading(false)
       navigate('/login')
     }
-    console.log(data);
   } 
 
   // validation function
@@ -88,7 +87,7 @@ function Register() {
   let validateSchema = Yup.object({
     name: Yup.string().min(3,'name minlingth is 3').max(20,'name maxlingth is 20').required('name is required'),
     email: Yup.string().email('email is invalid').required('email is required'),
-    phone: Yup.string().matches(/^\+(?:[0-9] ?){6,14}[0-9]$/,'Invalid phone number. Use international format, e.g., +123456789').required('Phone number is required'),
+    phone: Yup.string().matches(/^(\+?2)?010\d{8}$/,'Invalid phone number. Use international format, e.g  +201098765432').required('Phone number is required'),
     password: Yup.string().matches(
       /^(?=.*[A-Za-z])/,
       'Password should contain at least one uppercase or lowercase letter.'
@@ -116,10 +115,11 @@ function Register() {
 
   return (
     <>
+
       <div className="w-75 m-auto my-5">
+
         {error?<div className="alert alert-danger">{error}</div> : null}
         
-
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="name">Name: </label>
           <input value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} type='text'  name='name' id='name' className='form-control my-3' />

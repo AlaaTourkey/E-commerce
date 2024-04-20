@@ -4,7 +4,7 @@ import { CartContext } from '../Context/cartContext';
 import { Bars } from 'react-loader-spinner';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-import { date } from 'yup';
+import { Helmet } from 'react-helmet';
 
 function Cart() {
   const { getLoggedUserCart, removeItem, updateQuantity, clearCart, numOfCartItem, setNumOfCartItem } = useContext(CartContext);
@@ -74,6 +74,12 @@ function Cart() {
   }
   return (
     <>
+    
+    <Helmet>
+        <meta charSet="utf-8" />
+        <title>Fresh Market - Cart</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       {isLoading ? (
         <div className="d-flex align-items-center justify-content-center my-5">
           <Bars height="100" width="100" color="#0aad0a" ariaLabel="bars-loading" wrapperStyle={{}} wrapperClass="" visible={true} />

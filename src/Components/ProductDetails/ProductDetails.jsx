@@ -73,7 +73,7 @@ function ProductDetails() {
 
             </Slider>
           </div>
-          <div className="col-md-8">
+          <div className="col-md-8 my-4">
             <h2 className='fw-bold'>{data?.data.data.title}</h2>
             <p className='h5 text-black-50 p-2'>{data?.data.data.description}</p>
             <h4 className='h6'>{data?.data.data.category.name}</h4>
