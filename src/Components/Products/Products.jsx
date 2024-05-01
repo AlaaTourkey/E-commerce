@@ -24,7 +24,7 @@ function Products() {
           </div>
           <div className="col-md-6">
             <div className="d-flex align-items-center bg-white rounded-4 my-2">
-              <i class="fas fa-search  search-icon  "></i>
+              <i className="fas fa-search  search-icon  "></i>
               <input
                 type="text"
                 placeholder="Search products..."

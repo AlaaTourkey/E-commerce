@@ -11,24 +11,6 @@ function Address() {
 
     let { id } = useParams()
 
-    // async function checkout(shippingAddress) {
-    //     console.log(shippingAddress);
-    //     console.log(cartId);
-
-
-    //     let res = await axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`, {
-    //         shippingAddress
-    //     }, {
-    //         headers: {
-    //             token: localStorage.getItem("token")
-    //         }
-    //     })
-
-    //     console.log(res.data.session.url);
-    //     window.location.href = res.data.session.url
-    // }
-
-
     let shippingForm = useFormik({
         initialValues: {
             details: '',

@@ -5,8 +5,6 @@ export let CartContext = createContext()
 
 export default function CartContextProvider(props) {
 
-
-
   let headers = {
     token: localStorage.getItem('userToken')
   }
@@ -79,11 +77,12 @@ export default function CartContextProvider(props) {
   const [cartId, setCartId] = useState(null)
   const [numOfCartItem, setNumOfCartItem] = useState(0)
 
-  // to update number of cart items 
+  // to show number of cart items when open site
   useEffect(() => {
     const fetchInitialCart = async () => {
       try {
         const response = await getLoggedUserCart();
+        console.log('num of cart');
         setNumOfCartItem(response.data.numOfCartItems);
       } catch (error) {
         console.error('Error fetching initial cart data:', error);

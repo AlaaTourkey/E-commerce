@@ -23,7 +23,7 @@ function Layout() {
       <div >
         <Offline >
           <div className="network">
-            <i class="fa fa-wifi" aria-hidden="true"></i> You are offline (surprise!)
+            <i className="fa fa-wifi" aria-hidden="true"></i> You are offline (surprise!)
           </div>
         </Offline>
       </div>

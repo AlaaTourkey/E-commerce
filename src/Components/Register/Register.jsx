@@ -25,64 +25,6 @@ function Register() {
     }
   } 
 
-  // validation function
-  // function validate(values) {
-  //   let phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/
-  //   let emailRegex =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-  //   let passwordRegex =/^(?=.*[A-Za-z])[A-Za-z@$!%*?&]{8,}(?=.*[@$!%*?&])$/
-
-
-  //   let errors={};
-
-  //   // name validation
-  //   if (!values.name) {
-  //     errors.name="name is required"
-  //   }
-  //   else if (values.name.length<3) {
-  //     errors.name="name minlength is 3"
-  //   }
-  //   else if (values.name.length>10) {
-  //     errors.name="name maxlength is 10"
-  //   }
-
-  //   // phone validation
-  //   if (!values.phone) {
-  //     errors.phone= "phone is required "
-  //   }
-  //   else if (!phoneRegex.test(values.phone)) {
-  //     errors.phone="phone number invalid"
-  //   }
-
-  //   // email validation
-  //   if (!values.email) {
-  //     errors.email= "email is required "
-  //   }
-  //   else if (!emailRegex.test(values.email)) {
-  //     errors.email="email number invalid"
-  //   }
-
-  //   // password validation
-  //   if (!values.password) {
-  //     errors.password = 'Password is required';
-  //   } else if (!passwordRegex.test(values.password)) {
-  //     if (!/(?=.*[A-Z])/.test(values.password)) {
-  //       errors.password = 'At least one uppercase letter is required';
-  //     }  else if (values.password.length < 8) {
-  //       errors.password = 'Minimum of 8 characters is required';
-  //     }else if (!/(?=.*[@$!%*?&])/.test(values.password)) {
-  //       errors.password = 'At least one special character is required (@$!%*?&)';
-  //     }
-  //   }
-
-  //   // rePassword validation
-  //   if (!values.rePassword) {
-  //     errors.rePassword = 'Re-enter Password is required';
-  //   } 
-  //   else if (values.rePassword !== values.password) {
-  //     errors.rePassword = 'Passwords do not match';
-  //   }
-  //   return errors
-  // }
 
   let validateSchema = Yup.object({
     name: Yup.string().min(3,'name minlingth is 3').max(20,'name maxlingth is 20').required('name is required'),

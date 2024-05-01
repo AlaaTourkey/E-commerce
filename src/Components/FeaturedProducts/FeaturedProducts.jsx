@@ -2,28 +2,28 @@ import React, { useContext, useEffect, useState } from 'react';
 import Style from './FeaturedProducts.module.css';
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import { Bars } from 'react-loader-spinner';
+import { Puff } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../Context/cartContext';
 import toast from 'react-hot-toast';
 import Slider from 'react-slick';
 import { WishlistContext } from '../Context/wishlistContext';
 
-function FeaturedProducts({searchQuery}) {
-  
-    // for slider of products info
-    var settings = {
-      dots: true,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      speed: 1000,
-      autoplaySpeed: 3000,
-      cssEase: "linear",
-      arrows: false,
-    };
-  
+function FeaturedProducts({ searchQuery }) {
+
+  // for slider of products info
+  var settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    arrows: false,
+  };
+
 
   const { addToWishlist, setNumOfWishlistItem } = useContext(WishlistContext);
   const { addToCart, setNumOfCartItem } = useContext(CartContext);
@@ -64,12 +64,20 @@ function FeaturedProducts({searchQuery}) {
   const filteredProducts = data?.data.data.filter(product =>
     product.title?.toLowerCase().includes(searchQuery?.toLowerCase())
   );
-  console.log(data?.data.data);
+  // console.log(data?.data.data);
   return (
     <>
       {isLoading ? (
-        <div className="w-100 vh-100  d-flex justify-content-center align-items-center">
-          <Bars height="100" width="100" color="#0aad0a" ariaLabel="bars-loading" />
+        <div className="w-100   d-flex justify-content-center align-items-center">
+          <Puff
+            visible={true}
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
         </div>
       ) : (
         <div className="container">
@@ -82,7 +90,7 @@ function FeaturedProducts({searchQuery}) {
                       <Slider {...settings} className='mb-4'>
 
                         {product.images?.map((img) => {
-                          return <img  className='w-100' src={img} alt={data?.data.data.title} />
+                          return <img key={product.id} className='w-100' src={img} alt={product.title} />
                         })}
 
                       </Slider>

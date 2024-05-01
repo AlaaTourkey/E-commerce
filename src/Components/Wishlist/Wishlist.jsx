@@ -25,7 +25,7 @@ function Cart() {
   async function fetchWishlistInfo() {
     setIsLoading(true);
     let { data } = await getLoggedUserWishlist()
-    console.log(data);
+    // console.log(data);
     setWishtData(data?.data);
     setIsLoading(false);
     setNumOfWishlistItem(data?.count)
@@ -42,7 +42,7 @@ function Cart() {
     } else {
       toast.error('product not added')
     }
-    console.log(response.data);
+    // console.log(response.data);
   }
 
   // Function to remove item from wishlist
@@ -59,8 +59,6 @@ function Cart() {
     }
   }
 
-
-
   return (
 
     <>
@@ -70,8 +68,6 @@ function Cart() {
         <title>Fresh Market - Wishlist</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-
-      <h2>Wishlist</h2>
 
       {isLoading ? (
         <div className="d-flex align-items-center justify-content-center my-5">
@@ -88,26 +84,33 @@ function Cart() {
             </div>
             {wishData?.map((product) => (
               <div key={product._id} className="row my-2 py-2 border-2 border-bottom">
-                <div className="col-4  col-md-2">
-                  <img src={product.imageCover} alt="" className="w-100" />
+                <div className="  col-md-4">
+                  <div className="w-100 px-5 text-center">
+                    <img src={product.imageCover} alt="" className="w-100" />
+                  </div>
                 </div>
-                <div className="col-8 col-md-10">
-                  <div className="d-flex justify-content-between">
-                    <div>
-                      <h4 className="h5">{product.title.split(' ').slice(0, 3).join(' ')}</h4>
-                      <span><i className="fa fa-star rating-color" ></i> {product.ratingsAverage}</span>
-                      <h6 className="text-main">price: {product.price}</h6>
+                <div className=" col-md-8">
+                  <div className="row">
+                    <div className='col-9 w-md-75'>
+                      <h5 className="fw-light">{product.description}</h5>
+                      <h3 className="fw-bolder">{product.title.split(' ').slice(0, 3).join(' ')}</h3>
+                      <p className='fw-bold'>Available in Stock : {product.quantity}</p>
+                      <p className='fw-bold'>reviews  : {product.ratingsAverage} <i className="fa fa-star rating-color" ></i></p>
+                      <p className='fw-bold'>sold : {product.sold} <i className="fa-solid fa-bag-shopping"></i></p>
+                      <p className='fw-bold'> {product.brand.name} </p>
+                      <img className='product my-2 w-50' src={product.brand.image} alt="" />
                     </div>
-                    <div>
-                      <button onClick={() => addProduct(product._id)} className="btn main-border">
-                        Add To Cart
+                    <div className='col-3 text-center p-0'>
+                      <button onClick={() => removeItemFromWishlist(product._id)} className="font-sm btn text-danger">
+                        <i className="fas fa-trash-can"></i> Remove
                       </button>
-
                     </div>
                   </div>
-                  <button onClick={() => removeItemFromWishlist(product._id)} className="btn text-danger">
-                    <i className="fas fa-trash-can"></i> Remove
-                  </button>
+                  <h4 className="text-main my-3 fw-bold">price: {product.price}</h4>
+
+                  <button onClick={() => addProduct(product._id)} className="btn main-border form-control">
+                        Add To Cart
+                      </button>
 
                 </div>
               </div>

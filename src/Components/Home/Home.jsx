@@ -9,7 +9,6 @@ import Products from '../Products/Products';
 
 
 function Home() {
-  let { changeCounter, decreaseCounter } = useContext(CounterContext);
   return (
     <>
 
@@ -20,9 +19,6 @@ function Home() {
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
-      {/* <button onClick={()=> changeCounter()} className='btn btn-info'> change</button>
-    <button onClick={()=> decreaseCounter()} className='btn btn-danger'> change</button>
-      <h1>Home</h1> */}
       <div className="container">
         <MainSlider />
         <CategorySlider />

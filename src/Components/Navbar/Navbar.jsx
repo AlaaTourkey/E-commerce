@@ -35,16 +35,16 @@ function Navbar() {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {userToken !== null ? <>
                 <li className="nav-item">
-                  <NavLink className="nav-link " aria-current="page" to="Home">Home </NavLink>
+                  <NavLink className="nav-link " aria-current="page" to="Home"><span>Home</span> </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="Products">Products</NavLink>
+                  <NavLink className="nav-link" to="Products"><span>Products</span></NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="Categories">Categories</NavLink>
+                  <NavLink className="nav-link" to="Categories"><span>Categories</span></NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="Brands">Brands</NavLink>
+                  <NavLink className="nav-link" to="Brands"><span>Brands</span></NavLink>
                 </li>
               </> : ""}
             </ul>
@@ -53,7 +53,7 @@ function Navbar() {
 
               {userToken !== null ? <>
                 <li className="nav-item position-relative mx-2 vibrate-1">
-                  <Link className="nav-link   " to="Wishlist"><i className="fa-regular fa-heart fs-4"></i></Link>
+                  <NavLink className="nav-link   " to="Wishlist"><i className="fa-regular fa-heart fs-4"></i></NavLink>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
                     {numOfWishlistItem}
                       <span className="visually-hidden">unread messages</span>

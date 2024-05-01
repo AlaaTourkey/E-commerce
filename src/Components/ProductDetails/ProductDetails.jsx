@@ -7,6 +7,7 @@ import Slider from 'react-slick';
 import { Helmet } from 'react-helmet';
 import { CartContext } from '../Context/cartContext';
 import toast from 'react-hot-toast';
+import { Puff } from 'react-loader-spinner';
 
 
 function ProductDetails() {
@@ -61,32 +62,45 @@ function ProductDetails() {
         <title>{data?.data.data.title}</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
+      {isLoading ? (
+        <div className="w-100   d-flex justify-content-center align-items-center">
+          <Puff
+            visible={true}
+            height="80"
+            width="80"
+            color="#4fa94d"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+      ) : (<div className="container">
+      {data?.data.data ? <div className="row d-flex align-items-center">
+        <div className="col-md-4">
+          <Slider {...settings}>
 
-      <div className="container">
-        {data?.data.data ? <div className="row d-flex align-items-center">
-          <div className="col-md-4">
-            <Slider {...settings}>
+            {data?.data.data?.images.map((img) => {
+              return <img key={img} className='w-100' src={img} alt={data?.data.data.title} />
+            })}
 
-              {data?.data.data?.images.map((img) => {
-                return <img key={img} className='w-100' src={img} alt={data?.data.data.title} />
-              })}
-
-            </Slider>
+          </Slider>
+        </div>
+        <div className="col-md-8 my-4">
+          <h2 className='fw-bold'>{data?.data.data.title}</h2>
+          <p className='h5 text-black-50 p-2'>{data?.data.data.description}</p>
+          <h4 className='h6'>{data?.data.data.category.name}</h4>
+          <div className="d-flex justify-content-between">
+            <h6 className='text-main'>{data?.data.data.price} EGP</h6>
+            <h6><i className="fa fa-star rating-color" ></i> {data?.data.data.ratingsAverage}</h6>
           </div>
-          <div className="col-md-8 my-4">
-            <h2 className='fw-bold'>{data?.data.data.title}</h2>
-            <p className='h5 text-black-50 p-2'>{data?.data.data.description}</p>
-            <h4 className='h6'>{data?.data.data.category.name}</h4>
-            <div className="d-flex justify-content-between">
-              <h6 className='text-main'>{data?.data.data.price} EGP</h6>
-              <h6><i class="fa fa-star rating-color" ></i> {data?.data.data.ratingsAverage}</h6>
-            </div>
-            <button onClick={()=>addProduct(data?.data.data.id)} className='btn text-white bg-main form-control my-2'>+ add to cart </button>
+          <button onClick={()=>addProduct(data?.data.data.id)} className='btn text-white bg-main form-control my-2'>+ add to cart </button>
 
-          </div>
-        </div> : " "}
+        </div>
+      </div> : " "}
 
-      </div>
+    </div>)}
+
+     
     </>
   )
 }

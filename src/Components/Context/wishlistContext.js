@@ -12,6 +12,7 @@ export const WishlistContextProvider = (props) => {
     const fetchInitialWishlist = async () => {
       try {
         const response = await getLoggedUserWishlist();
+        console.log('num of wish');
         setNumOfWishlistItem(response.count);
       } catch (error) {
         console.error('Error fetching initial wishlist data:', error);
