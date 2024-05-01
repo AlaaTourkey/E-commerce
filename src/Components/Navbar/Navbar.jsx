@@ -78,15 +78,14 @@ function Navbar() {
                 </li>
 
                 <li className="nav-item">
-                  <span onClick={logout} className="nav-link cursor-pointer" to="/Login">Logout</span>
+                  <span onClick={logout} className="nav-link cursor-pointer" to="/Login"> Logout</span>
                 </li></> :
                 <><li className="nav-item">
-                  <NavLink className="nav-link" aria-current="page" to="/Login">login</NavLink>
+                  <NavLink className="nav-link" aria-current="page" to="/Login"><span>login</span></NavLink>
                 </li>
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/Register">Register</NavLink>
+                    <NavLink className="nav-link" to="/Register"><span>Register</span></NavLink>
                   </li></>}
-
             </ul>
           </div>
         </div>
