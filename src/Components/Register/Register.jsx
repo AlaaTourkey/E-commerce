@@ -13,17 +13,19 @@ function Register() {
   const [isLoading, setIsLoading] = useState(false);
   
   async function submitRegister(values) {
-    setIsLoading(true)
-    let data = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values)
-    .catch((err)=>{
-      setIsLoading(false)
-      setError(err.response.data.message)
-      });
-    if (data.message == "success") {
-      setIsLoading(false)
-      navigate('/login')
+    setIsLoading(true);
+    try {
+      let response = await axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values);
+      if (response.data.message === "success") {
+        setIsLoading(false);
+        navigate('/login');
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.response.data.message);
+      console.error(error);
     }
-  } 
+  }
 
 
   let validateSchema = Yup.object({
