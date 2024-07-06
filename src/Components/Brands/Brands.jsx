@@ -38,7 +38,7 @@ function Brands() {
         </div>
       ) : (<div className="container my-5">
         <div className="row g-5">
-          {data?.data?.data.map((product) => <div className="col-6 col-md-3">
+          {data?.data?.data.map((product,index) => <div key={index} className="col-6 col-md-3">
             <div className="text-center product">
               <img className='w-100' src={product.image} alt="" />
               <hr />

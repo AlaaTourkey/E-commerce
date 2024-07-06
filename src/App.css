@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+/* scroll circle */
+.circle-progress-container {
+  /* position: fixed !important;
+  bottom: 5% !important;
+  left: 10px !important;
+  z-index: 100; */
+}
+
+.progress-circle {
+  transform: rotate(-90deg);
+}
+
+.progress-circle-background {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.1);
+}
+
+.progress-circle-foreground {
+  fill: none;
+  stroke: #4caf50;
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
