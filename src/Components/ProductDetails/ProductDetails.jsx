@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import Style from './ProductDetails.module.css'
-import { useParams } from 'react-router-dom'
+ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import Slider from 'react-slick';
@@ -8,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import { CartContext } from '../Context/cartContext';
 import toast from 'react-hot-toast';
 import { Puff } from 'react-loader-spinner';
+import useCartStore from '../../store/cartStore';
 
 
 function ProductDetails() {
@@ -25,33 +25,33 @@ function ProductDetails() {
     arrows: false,
   };
 
-  let{ addToCart ,setNumOfCartItem}= useContext(CartContext)
+  const {setNumOfCartItems } = useCartStore();
+
+
+  const { addToCart }= useContext(CartContext)
   // get the id of each product
   let { id } = useParams();
-  console.log(id);
-
+ 
   // get product details function
   function getProductDetails(id) {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`);
   }
 
-  let { data, isLoading, isError } = useQuery('productDetails', () => getProductDetails(id));
-  console.log(data?.data.data);
-
+  let { data, isLoading } = useQuery('productDetails', () => getProductDetails(id));
+ 
 
   // fun that use addtocart fun from cartcontext
   async function addProduct(productId) {
     let response = await addToCart(productId);
     if (response.data.status === 'success') {
-      setNumOfCartItem(response.data.numOfCartItems);
+      setNumOfCartItems(response.data.numOfCartItems);
       toast.success('product Successfully added' ,  {
         duration : 4000,
       })
     }else{
       toast.error('product not added')
     }
-    console.log(response.data);
-  }
+   }
 
 
   return (

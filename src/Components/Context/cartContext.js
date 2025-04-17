@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import useCartStore from "../../store/cartStore";
 
 export let CartContext = createContext()
 
@@ -8,6 +9,9 @@ export default function CartContextProvider(props) {
   let headers = {
     token: localStorage.getItem('userToken')
   }
+
+  const {setNumOfCartItems , incrementCart ,decrementCart } = useCartStore();
+
 
   // add products to cart function 
   async function addToCart(id) {
@@ -75,15 +79,15 @@ export default function CartContextProvider(props) {
   }
 
   const [cartId, setCartId] = useState(null)
-  const [numOfCartItem, setNumOfCartItem] = useState(0)
+  // const [numOfCartItem, setNumOfCartItem] = useState(0)
 
   // to show number of cart items when open site
   useEffect(() => {
     const fetchInitialCart = async () => {
       try {
         const response = await getLoggedUserCart();
-        console.log('num of cart');
-        setNumOfCartItem(response.data.numOfCartItems);
+         setNumOfCartItems(response.data.numOfCartItems);
+         
       } catch (error) {
         console.error('Error fetching initial cart data:', error);
       }
@@ -106,7 +110,7 @@ export default function CartContextProvider(props) {
   }
 
 
-  return <CartContext.Provider value={{ addToCart, addToWishlist, getLoggedUserCart, removeItem, updateQuantity, clearCart, numOfCartItem, setNumOfCartItem ,checkoutPayment}}>
+  return <CartContext.Provider value={{ addToCart, addToWishlist, getLoggedUserCart, removeItem, updateQuantity, clearCart ,checkoutPayment}}>
     {props.children}
   </CartContext.Provider>
 }

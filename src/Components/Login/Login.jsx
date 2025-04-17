@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
-import Style from './Login.module.css'
-import * as Yup from 'yup'
+ import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
@@ -28,8 +27,7 @@ function Login() {
       setUserToken(data.token)
       navigate('/home');
     }
-    console.log(data);
-  }
+   }
 
   // validation function (yup)
   let validateSchema = Yup.object({

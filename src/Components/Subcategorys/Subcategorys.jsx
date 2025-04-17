@@ -12,8 +12,7 @@ function Subcategorys() {
 
   let { data, isLoading, isError } = useQuery('getsubcategoryDetails', () => getsubcategoryDetails(id));
 
-  console.log(data);
-  return (
+   return (
     <>
       <div className="container my-5">
         <div className="row g-4">

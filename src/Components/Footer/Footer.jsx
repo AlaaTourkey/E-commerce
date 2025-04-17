@@ -1,6 +1,5 @@
 import React from 'react'
-import Style from './Footer.module.css'
-import img1 from '../../Assets/images/master.svg'
+ import img1 from '../../Assets/images/master.svg'
 import img2 from '../../Assets/images/visa-1.svg'
 import img3 from '../../Assets/images/app-store.svg'
 import img4 from '../../Assets/images/google-store.svg'

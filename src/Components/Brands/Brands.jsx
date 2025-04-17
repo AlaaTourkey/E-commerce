@@ -13,8 +13,7 @@ function Brands() {
 
   let { data, isLoading } = useQuery('getbrands', getBrands)
 
-  console.log(data?.data?.data);
-
+ 
 
   return (
     <>

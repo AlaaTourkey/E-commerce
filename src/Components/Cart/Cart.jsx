@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Style from './Cart.module.css';
-import { CartContext } from '../Context/cartContext';
+ import { CartContext } from '../Context/cartContext';
 import { Bars } from 'react-loader-spinner';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import useCartStore from '../../store/cartStore';
 
 function Cart() {
   const { getLoggedUserCart, removeItem, updateQuantity, clearCart, numOfCartItem, setNumOfCartItem } = useContext(CartContext);
@@ -12,6 +12,7 @@ function Cart() {
   const [cartData, setCartData] = useState(null);
   let [totalCartPrice, setTotalCartPrice] = useState(0)
 
+  const {setNumOfCartItems , incrementCart ,decrementCart } = useCartStore();
 
   // Load cart data on component mount
   useEffect(() => {
@@ -26,16 +27,16 @@ function Cart() {
     setCartData(data?.data);
     setIsLoading(false);
     setTotalCartPrice(data?.data.totalCartPrice);
-    setNumOfCartItem(data?.numOfCartItems)
+    setNumOfCartItems(data?.numOfCartItems)
   }
 
 
   // Function to remove item from cart
   async function removeItemFromCart(id) {
-    let { data } = await removeItem(id);
+    const { data } = await removeItem(id);
     setCartData(data?.data);
     setTotalCartPrice(data?.data.totalCartPrice);
-    setNumOfCartItem(data?.numOfCartItems)
+    setNumOfCartItems(data?.numOfCartItems)
 
   }
 
@@ -45,8 +46,7 @@ function Cart() {
       let { data } = await updateQuantity(id, count)
       setCartData(data?.data);
       setTotalCartPrice(data?.data.totalCartPrice);
-      console.log(data?.data.products);
-
+ 
       toast.success('success to updating product quantity');
     } else {
       removeItem(id)
@@ -145,7 +145,7 @@ function Cart() {
                       </div>
                     </div>
                   ))}
-                </div>
+                </div>  
               ) : (
                 ' '
               )}

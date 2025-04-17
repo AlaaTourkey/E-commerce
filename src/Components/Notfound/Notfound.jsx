@@ -1,6 +1,5 @@
 import React from 'react'
-import Style from './Notfound.module.css'
-import notfoundImg from '../../Assets/images/error.svg'
+ import notfoundImg from '../../Assets/images/error.svg'
 
 function Notfound() {
   return (

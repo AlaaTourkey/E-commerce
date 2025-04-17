@@ -22,10 +22,8 @@ function Address() {
         }
     })
     async function shippingPay(val) {
-      console.log(val);
-      let {data} = await checkoutPayment(id , val)
-      console.log(data);
-      if (data.status == 'success') {
+       let {data} = await checkoutPayment(id , val)
+       if (data.status == 'success') {
         window.location.href = data.session.url
       }
     }

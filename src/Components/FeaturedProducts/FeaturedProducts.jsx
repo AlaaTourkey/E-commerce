@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Style from './FeaturedProducts.module.css';
-import axios from 'axios';
+ import axios from 'axios';
 import { useQuery } from 'react-query';
 import { Puff } from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
@@ -8,8 +7,13 @@ import { CartContext } from '../Context/cartContext';
 import toast from 'react-hot-toast';
 import Slider from 'react-slick';
 import { WishlistContext } from '../Context/wishlistContext';
-
+import useWishlistStore from "../../store/wishlistStore";
+import useCartStore from "../../store/cartStore";
+ 
 function FeaturedProducts({ searchQuery }) {
+    const { setNumOfWishlistItem, incrementWishlist, decrementWishlist } = useWishlistStore();
+    const { setNumOfCartItems , incrementCart , decrementCart } = useCartStore();
+
 
   // for slider of products info
   var settings = {
@@ -25,7 +29,7 @@ function FeaturedProducts({ searchQuery }) {
   };
 
 
-  const { addToWishlist, setNumOfWishlistItem } = useContext(WishlistContext);
+  const { addToWishlist } = useContext(WishlistContext);
   const { addToCart, setNumOfCartItem } = useContext(CartContext);
 
   const [wishlistStatus, setWishlistStatus] = useState({});
@@ -48,7 +52,7 @@ function FeaturedProducts({ searchQuery }) {
     let response = await addToCart(productId);
     if (response.data.status === 'success') {
       toast.success(response.data.message, { duration: 4000 });
-      setNumOfCartItem(response.data.numOfCartItems);
+      setNumOfCartItems(response.data.numOfCartItems);
     } else {
       toast.error('Product not added to cart');
     }
@@ -64,8 +68,7 @@ function FeaturedProducts({ searchQuery }) {
   const filteredProducts = data?.data.data.filter(product =>
     product.title?.toLowerCase().includes(searchQuery?.toLowerCase())
   );
-  // console.log(data?.data.data);
-  return (
+   return (
     <>
       {isLoading ? (
         <div className="w-100   d-flex justify-content-center align-items-center">

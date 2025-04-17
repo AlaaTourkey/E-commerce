@@ -1,19 +1,21 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import useWishlistStore from "../../store/wishlistStore";
 
 export const WishlistContext = createContext();
 
 export const WishlistContextProvider = (props) => {
+  const { setNumOfWishlistItem, incrementWishlist, decrementWishlist } = useWishlistStore();
 
-  const [numOfWishlistItem, setNumOfWishlistItem] = useState(0);
+  // const [numOfWishlistItem, setNumOfWishlistItem] = useState(0);
 
   useEffect(() => {
     const fetchInitialWishlist = async () => {
       try {
         const response = await getLoggedUserWishlist();
-        console.log('num of wish');
-        setNumOfWishlistItem(response.count);
+         
+         setNumOfWishlistItem(response.count);
       } catch (error) {
         console.error('Error fetching initial wishlist data:', error);
       }
@@ -27,18 +29,37 @@ export const WishlistContextProvider = (props) => {
   };
 
   // add products to Wishlist function 
-  async function addToWishlist(id) {
-    return axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,
-      {
-        productId: id
-      },
-      {
-        headers: headers
-      })
-      .then((response) => response)
-      .catch((error) => error);
-  }
+  // async function addToWishlist(id) {
+  //   return axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`,
+  //     {
+  //       productId: id
+  //     },
+  //     {
+  //       headers: headers
+  //     })
+  //     .then((response) => response)
+  //     .catch((error) => error);
+  // }
 
+
+  async function addToWishlist(id) {
+    try {
+      const response = await axios.post(`https://ecommerce.routemisr.com/api/v1/wishlist`, {
+        productId: id
+      }, {
+        headers: headers
+      });
+
+      if (response.data.status === 'success') {
+        incrementWishlist(); // Increment the wishlist count
+        toast.success(response.data.message);
+      }
+      return response;
+    } catch (error) {
+      console.error('Error adding item to wishlist:', error);
+      toast.error('Error adding item to wishlist');
+    }
+  }
 
   // get info from logged cart 
   async function getLoggedUserWishlist() {
@@ -56,6 +77,7 @@ export const WishlistContextProvider = (props) => {
         headers: headers
       });
       if (response.data.status === 'success') {
+        decrementWishlist();
         toast.success(response.data.message);
         return response;
       } else {
@@ -99,7 +121,7 @@ export const WishlistContextProvider = (props) => {
   
 
   return (
-    <WishlistContext.Provider value={{ getLoggedUserWishlist, addToWishlist, removeItem, numOfWishlistItem, setNumOfWishlistItem, checkoutPayment }}>
+    <WishlistContext.Provider value={{ getLoggedUserWishlist, addToWishlist, removeItem,  checkoutPayment }}>
       {props.children}
     </WishlistContext.Provider>
   );

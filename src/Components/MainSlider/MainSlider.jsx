@@ -1,6 +1,5 @@
 import React from 'react'
-import Style from './MainSlider.module.css'
-import Slider from 'react-slick';
+ import Slider from 'react-slick';
 import img1 from '../../Assets/images/slider-image-1.jpeg'
 import img2 from '../../Assets/images/slider-image-2.jpeg'
 import img3 from '../../Assets/images/slider-image-3.jpeg'
@@ -58,9 +57,9 @@ function MainSlider() {
         <div className="col-sm-9 col-12 mb-3">
 
           <Slider {...settings}>
-            <img height={400} className='w-100' src={img1} alt="image one" />
-            <img height={400} className='w-100' src={img4} alt="image one" />
-            <img height={400} className='w-100' src={img5} alt="image one" />
+            <img height={400} className='w-100' src={img1} alt="  one" />
+            <img height={400} className='w-100' src={img4} alt="  two" />
+            <img height={400} className='w-100' src={img5} alt="  three" />
           </Slider>
         </div>
         <div className="col-sm-3 col-12">

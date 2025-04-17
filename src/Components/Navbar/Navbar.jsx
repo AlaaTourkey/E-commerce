@@ -1,18 +1,23 @@
 import React, { useContext } from 'react'
-import Style from './Navbar.module.css'
-import {Link, NavLink, useNavigate } from 'react-router-dom'
+import {   NavLink, useNavigate } from 'react-router-dom'
 import logo from '../../Assets/images/freshcart-logo.svg'
 import { UserContext } from '../Context/userContext'
-import { CartContext } from '../Context/cartContext'
-import { WishlistContext } from '../Context/wishlistContext'
+// import { CartContext } from '../Context/cartContext'
+// import { WishlistContext } from '../Context/wishlistContext'
+import useWishlistStore from '../../store/wishlistStore'
+import useCartStore from '../../store/cartStore'
 
 
 function Navbar() {
 
-  let {numOfCartItem} = useContext(CartContext);
-  let {numOfWishlistItem} = useContext(WishlistContext)
+  // let { numOfCartItem } = useContext(CartContext);
+  // let {numOfWishlistItem} = useContext(WishlistContext)
   let { userToken, setUserToken } = useContext(UserContext);
   let navigate = useNavigate()
+
+
+  const numOfWishlistItem = useWishlistStore((state) => state.numOfWishlistItem);
+  const numOfCartItems = useCartStore((state) => state.numOfCartItems)
 
   function logout() {
     localStorage.removeItem('userToken')
@@ -52,22 +57,29 @@ function Navbar() {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center flex-row ">
 
               {userToken !== null ? <>
-                <li className="nav-item position-relative mx-2 vibrate-1">
+                {/* <li className="nav-item position-relative mx-2 vibrate-1">
                   <NavLink className="nav-link   " to="Wishlist"><i className="fa-regular fa-heart fs-4"></i></NavLink>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
                     {numOfWishlistItem}
                       <span className="visually-hidden">unread messages</span>
                     </span>
+                </li> */}
+                <li className="nav-item position-relative mx-2 vibrate-1">
+                  <NavLink className="nav-link   " to="Wishlist"><i className="fa-regular fa-heart fs-4"></i></NavLink>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
+                    {numOfWishlistItem}
+                    <span className="visually-hidden">unread messages</span>
+                  </span>
                 </li>
-                
+
                 <li className="nav-item position-relative mx-2 vibrate-1">
                   <NavLink className=" nav-link " to="Cart"><i className="fas fa-cart-plus  fs-5 mx-2 "></i></NavLink>
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
-                    {numOfCartItem}
-                      <span className="visually-hidden">unread messages</span>
-                    </span>
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-main">
+                    {numOfCartItems}
+                    <span className="visually-hidden">unread messages</span>
+                  </span>
                 </li>
-                
+
 
                 <li className="nav-item d-flex align-items-center cursor-pointer">
                   <i className="fa-brands fa-facebook mx-2"></i>

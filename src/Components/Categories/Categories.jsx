@@ -1,6 +1,5 @@
 import React from 'react'
-import Style from './Categories.module.css'
-import axios from 'axios';
+ import axios from 'axios';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { Puff } from 'react-loader-spinner';
@@ -16,8 +15,7 @@ function Categories() {
   let { isLoading, data } = useQuery('getCategoriesProducts', getCategoriesProducts);
 
 
-  console.log(data?.data?.data);
-
+ 
   return (
     <>
 

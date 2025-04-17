@@ -1,6 +1,5 @@
 import React from 'react'
-import Style from './CategorySlider.module.css'
-import { useQuery } from 'react-query'
+ import { useQuery } from 'react-query'
 import axios from 'axios'
 import Slider from 'react-slick';
 

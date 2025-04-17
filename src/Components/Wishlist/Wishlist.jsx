@@ -1,15 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Bars } from 'react-loader-spinner';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
 import { WishlistContext } from '../Context/wishlistContext';
 import { CartContext } from '../Context/cartContext';
 import { Helmet } from 'react-helmet';
+import useWishlistStore from '../../store/wishlistStore';
+import useCartStore from '../../store/cartStore';
 
 
 function Cart() {
-  let { getLoggedUserWishlist, removeItem, setNumOfWishlistItem, numOfWishlistItem } = useContext(WishlistContext)
-  let { addToCart, setNumOfCartItem } = useContext(CartContext)
+  let { getLoggedUserWishlist, removeItem  } = useContext(WishlistContext)
+  let { addToCart } = useContext(CartContext)
+
+  // store of zustand 
+  const { setNumOfWishlistItem  } = useWishlistStore();
+  const {setNumOfCartItems  } = useCartStore();
 
   const [isLoading, setIsLoading] = useState(true);
   const [wishData, setWishtData] = useState(null);
@@ -25,8 +30,7 @@ function Cart() {
   async function fetchWishlistInfo() {
     setIsLoading(true);
     let { data } = await getLoggedUserWishlist()
-    // console.log(data);
-    setWishtData(data?.data);
+     setWishtData(data?.data);
     setIsLoading(false);
     setNumOfWishlistItem(data?.count)
   }
@@ -35,15 +39,14 @@ function Cart() {
   async function addProduct(productId) {
     let response = await addToCart(productId);
     if (response.data.status === 'success') {
-      setNumOfCartItem(response.data.numOfCartItems);
+      setNumOfCartItems(response.data.numOfCartItems);
       toast.success(response.data.message, {
         duration: 4000,
       })
     } else {
       toast.error('product not added')
     }
-    // console.log(response.data);
-  }
+   }
 
   // Function to remove item from wishlist
   async function removeItemFromWishlist(id) {
@@ -68,6 +71,8 @@ function Cart() {
         <title>Fresh Market - Wishlist</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
+
+
 
       {isLoading ? (
         <div className="d-flex align-items-center justify-content-center my-5">
